@@ -9,10 +9,10 @@ let recoder
 export default class Timer extends Component{
     constructor(props) {
         super(props)
-        // this.state = {isRunning: false}
+        this.state = {startTime: false}
     }
 
-ç    componentWillMount(){
+    componentWillMount(){
    
         // chrome.storage.sync.get('startTime', (startTime)=>{
         //     this.setState(startTime)
@@ -21,22 +21,30 @@ export default class Timer extends Component{
     //TODO save all state in chrome storage on component will unmount
 
     handleClick(){
-        console.log("in handle click")
+        console.log("in handle click", this)
         const startTime = new Date()
-        this.setState({startTime : startTime}, function(){
-            console.log("jsadhf", this.state.startTime.getHours())
+        this.setState({startTime : startTime.getTime()}, function(){
+            console.log("jsadhf", this.state.startTime)
 
         })
     }
 
 
-
+    getTimeElapsed(){
+        console.log('in getTimeElapsed', this)
+        if(this.state.startTime){
+            console.log("in this.state.startTime")
+            const date = new Date()
+            const currentTime = date.getTime()
+            console.log('currentTime ', currentTime, 'startTime :', this.state.startTime)
+            return currentTime - this.state.startTime
+        }
+      
+    }
 
     render(){
-        // const pauseVisbility = !this.state.isRunning ? 'grey': 'black'
-        // const buttonText = this.state.isRunning ? 'Stop' : (!this.state.isRunning && (this.state.startTime > 0)) ? 'Restart' : 'Start'
         return <div style={{height: '250px', width:'250px', display:"flex", justifyContent: "center", alignItems: "center"}}>
-                    <p> Time : {this.state.startTime</p>
+                    <p> Time : {this.getTimeElapsed.call(this)}</p>
                     <div onClick={this.handleClick.bind(this)} style={{backgroundColor:"black", height:"50px", width:"100px"}}>
                         <h1 style={{color: 'white'}}>{"start"}</h1>
                     </div>
