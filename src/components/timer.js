@@ -6,6 +6,10 @@ const limit = 15
 let counter = 0
 let recoder
 
+export function add(a, b){
+    return a + b
+}
+
 export default class Timer extends Component{
     constructor(props) {
         super(props)
