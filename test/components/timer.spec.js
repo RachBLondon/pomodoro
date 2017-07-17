@@ -1,12 +1,19 @@
+import React from 'react'
 import chai, {expect} from 'chai'
-import { add } from '../../src/components/timer'
+import Timer from '../../src/components/timer'
+import { shallow } from 'enzyme'
 
+describe('Timer', ()=>{
+    it('exisists', ()=>{
+        expect(Timer).to.exist
+    })
+})
 
-
-describe('add', ()=>{
-    it('add',()=>{
-        expect(1 + 5).to.equal(6)
-        expect(add(1, 2)).to.equal(3)
-
+describe('startTime', ()=>{
+    it('returns and saves a start time in state', ()=>{
+        const wrapper = shallow(<Timer />)
+        var date = new Date()
+        expect(wrapper.instance().startTimer().getMinutes()).to.equal(date.getMinutes())
+        expect(wrapper.state('startTime').getMinutes()).to.equal(date.getMinutes())
     })
 })
