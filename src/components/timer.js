@@ -6,7 +6,10 @@ const limit = 15
 let counter = 0
 let recoder
 
-
+export function getTimeElapsed(startTime){
+    const currentTime = new Date()
+    return currentTime - startTime
+}
 
 export default class Timer extends Component{
     constructor(props) {
