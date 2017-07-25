@@ -23,6 +23,7 @@
     "mocha": "^3.4.2",
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
+    "sinon-chrome": "^2.2.1",
     "webpack": "^3.0.0",
     "webpack-bundle-analyzer": "^2.8.2"
   },

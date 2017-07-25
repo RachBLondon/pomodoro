@@ -3,6 +3,7 @@ import chai, {expect} from 'chai'
 import Timer, { getTimeElapsed } from '../../src/components/timer'
 import { shallow } from 'enzyme'
 import mocha, {done } from 'mocha'
+import chrome from 'sinon-chrome'
 
 describe('Timer', ()=>{
     it('exisists', ()=>{
@@ -11,6 +12,10 @@ describe('Timer', ()=>{
 })
 
 describe('startTime', ()=>{
+    before(function () {
+        global.chrome = chrome;
+    });
+    
     it('returns and saves a start time in state', ()=>{
         const wrapper = shallow(<Timer />)
         var date = new Date()
