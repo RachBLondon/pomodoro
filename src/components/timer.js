@@ -19,14 +19,10 @@ export default class Timer extends Component{
     }
 
     componentWillMount(){
-        // chrome.storage.sync.set({'startTime': null}, function(){
-
-            chrome.storage.sync.get('startTime', (startTime)=>{
-                console.log("chrome get ", startTime)
-                this.setState(startTime)
-            })
-
-        // })
+        chrome.storage.sync.get('startTime', (startTime)=>{
+            console.log("chrome get ", startTime)
+            this.setState(startTime)
+        })
     }
 
     //TODO save all state in chrome storage on component will unmount
@@ -36,6 +32,7 @@ export default class Timer extends Component{
     //         message('saved settings')
     //     })
     // }
+
     startTimer(){
         const startTime = new Date()
         this.setState({startTime : startTime})
@@ -50,8 +47,6 @@ export default class Timer extends Component{
     }
 
     render(){
-        // const secondsSinceStart = this.state.startTime.getSeconds() || ""
-        console.log("render state :", this.state)
         return <div style={{height : '100px'}}>
                     <button onClick={this.startTimer}> button</button>
                     <span className="startTime">{this.getStartTime()}</span>
