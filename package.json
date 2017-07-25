@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "sinon": "^2.3.8"
   },
   "false": {}
 }

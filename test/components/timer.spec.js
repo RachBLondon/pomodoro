@@ -1,9 +1,13 @@
+
+
 import React from 'react'
 import chai, {expect} from 'chai'
 import Timer, { getTimeElapsed } from '../../src/components/timer'
 import { shallow } from 'enzyme'
 import mocha, {done } from 'mocha'
-import chrome from 'sinon-chrome'
+import chrome from 'sinon-chrome' //https://github.com/acvetkov/sinon-chrome
+import sinon from 'sinon'
+//TODO get sinon to simulate button clicks
 
 describe('Timer', ()=>{
     before(function () {
@@ -29,18 +33,32 @@ describe('Timer', ()=>{
     })
 })
 
-// describe('startTime', ()=>{
-//     before(function () {
-//         global.chrome = chrome
-//     })
+describe('startTime', ()=>{
+    before(function () {
+        global.chrome = chrome
+    })
 
-//     it('returns and saves a start time in state', ()=>{
-//         const wrapper = shallow(<Timer />)
-//         var date = new Date()
-//         expect(wrapper.instance().startTimer().getMinutes()).to.equal(date.getMinutes())
-//         expect(wrapper.state('startTime').getMinutes()).to.equal(date.getMinutes())
-//     })
-// })
+    it('returns and saves a start time in state', ()=>{
+        const wrapper = shallow(<Timer />)
+        var date = new Date()
+        expect(wrapper.instance().startTimer().getMinutes()).to.equal(date.getMinutes())
+        expect(wrapper.state('startTime').getMinutes()).to.equal(date.getMinutes())
+    })   
+})
+
+describe('Timer display', ()=>{
+    before(function () {
+        global.chrome = chrome
+    })
+
+
+
+    //TODO set up sinon to handle button clicks
+    it('displays startTime if present', ()=>{
+    
+    })
+})
+
 
 
 

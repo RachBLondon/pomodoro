@@ -19,30 +19,32 @@ export default class Timer extends Component{
     }
 
     componentWillMount(){
-        chrome.storage.sync.get('startTime', (startTime)=>{
-            console.log("startTime :", startTime)
-            this.setState({startTime : startTime})
-            console.log("afterSetate", this.state)
-        })
+        // chrome.storage.sync.set({'startTime': null}, function(){
+
+            chrome.storage.sync.get('startTime', (startTime)=>{
+                console.log("chrome get ", startTime)
+                this.setState(startTime)
+            })
+
+        // })
     }
 
-    componentWillUnmount(){
-        chrome.storage.sync.set({'startTime': this.state.startTime})
-    }
     //TODO save all state in chrome storage on component will unmount
+    // componentWillUnmount(){
+    //     console.log("in componne will unmount " )
+    //     chrome.storage.sync.set({'startTime': this.state.startTime}, function(){
+    //         message('saved settings')
+    //     })
+    // }
     startTimer(){
-        chrome.storage.local.get(function(result){console.log("lajfdlskflks", result)})
         const startTime = new Date()
-        // console.log('this statTiemrs',this )
-        console.log("typeof ", typeof startTime)
         this.setState({startTime : startTime})
         return startTime
     }
 
     getStartTime(){
-        console.log("hdsf", typeof this.state.startTime)
-        if(this.state.startTime !== null){
-            console.log("in if ")
+        if(this.state.startTime){
+            console.log("in if getStartTime ", this.state)
             return this.state.startTime.getSeconds()
         }
     }
@@ -52,7 +54,7 @@ export default class Timer extends Component{
         console.log("render state :", this.state)
         return <div style={{height : '100px'}}>
                     <button onClick={this.startTimer}> button</button>
-                    {this.getStartTime()}
+                    <span className="startTime">{this.getStartTime()}</span>
                 </div>
     }
 }
