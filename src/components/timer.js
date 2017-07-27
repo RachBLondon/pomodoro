@@ -23,12 +23,12 @@ export default class Timer extends Component{
         console.log('in start Timer this ', this)
         this.timer = setInterval(()=>{
            this.tick()
-        }, 1000)
+        }, 5000)
     }
 
     stopTimer(){
         console.log("stop timer  this", this)
-        clearInterval(this.time)
+        clearInterval(this.timer)
     }
 
     tick(){
@@ -88,7 +88,7 @@ export default class Timer extends Component{
                     <span className="startTime">State Start Time{this.state.startTime}</span>
                     <span className="elapsedTime">Elapsed Time {this.state.timeElapsed}</span>
                     <button onClick={this.startTimer.bind(this)}> button</button>
-                    <button onClick={this.stopTimer}>Stop </button>
+                    <button onClick={this.stopTimer.bind(this)}>Stop </button>
                     
                     
 
