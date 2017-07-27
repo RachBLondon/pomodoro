@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import chai, {expect} from 'chai'
 import Timer from '../../src/components/timer'
@@ -35,7 +33,7 @@ describe('Time functions', ()=>{
         expect(wrapper.state('startTime')- date <= TIME_TOLERANCE).to.be.true
     })
     
-    it(`calculates the time elapsed since start time ${TIME_TOLERANCE}`, ()=>{
+    it(`calculates the time elapsed since start time with a tolerance ${TIME_TOLERANCE}`, ()=>{
         const perfectValue = Date.now()- date
         expect(perfectValue - wrapper.state('timeElapsed')<= TIME_TOLERANCE).to.be.true
     })

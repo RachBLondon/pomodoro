@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import CountDown from './countDown.js'
 
+export function toSecs(ms){
+    return ms / 1000
+}
+
+export function toMins(ms){
+    return (ms / 1000) / 60
+}
+
 export default class CountDownContainer extends Component {
 
     getSecsElapsed(){
