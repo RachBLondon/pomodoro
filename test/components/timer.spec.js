@@ -20,7 +20,7 @@ describe('Timer', ()=>{
     })
 })
 
-describe.only('Time functions', ()=>{
+describe('Time functions', ()=>{
     before(function () {
         global.chrome = chrome
     })
@@ -49,4 +49,17 @@ describe.only('Time functions', ()=>{
     })
 })
 
+describe('start and stop buttons', ()=>{
+    const wrapper = shallow(<Timer />)
+    wrapper.instance().startTimer()
+
+    it('should hide statButton when the timer is running', ()=>{
+        expect(wrapper.find(".startBtn")).to.have.length(0)
+    })
+
+    it('should hide stopButton whne timer is not running ', ()=>{
+        wrapper.instance().stopTimer()
+        expect(wrapper.find(".stopBtn")).to.have.length(0)
+    })
+})
 
