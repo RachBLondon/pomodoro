@@ -10,11 +10,11 @@ export default class Timer extends Component{
     
     constructor(props){
         super(props);
-            this.state = {startTime: Date.now()}
+            this.state = {startTime: Date.now(), isTimerRunning: false}
     }
 
     startTimer(){
-        this.setState({startTime: Date.now()})
+        this.setState({startTime: Date.now(), isTimerRunning : true})
         this.timer = setInterval(()=>{
            this.tick()
         }, 1)
@@ -34,8 +34,8 @@ export default class Timer extends Component{
         return <div style={{height : '100px'}}>
                     <span className="startTime">State Start Time{this.state.startTime}</span>
                     <span className="elapsedTime">Elapsed Time {this.state.timeElapsed}</span>
-                    <button onClick={this.startTimer.bind(this)}> button</button>
-                    <button onClick={this.stopTimer.bind(this)}>Stop </button>
+                    {!this.state.isTimerRunning && <button className="startBtn" onClick={this.startTimer.bind(this)}> button</button>}
+                    <button className="stopBtn" onClick={this.stopTimer.bind(this)}>Stop </button>
                 </div>
     }
 }
