@@ -38,6 +38,15 @@ describe.only('Time functions', ()=>{
         const perfectValue = Date.now()- date
         expect(perfectValue - wrapper.state('timeElapsed')<= 2).to.be.true
     })
+
+    it('stop timer stops elapsed time from increasing', (done)=>{
+        const initalTime = wrapper.state('timeElapsed')
+        wrapper.instance().stopTimer()
+        setTimeout(function(){
+            expect(wrapper.state('timeElapsed')).to.equal(initalTime)
+            done()
+        },200)
+    })
 })
 
 
