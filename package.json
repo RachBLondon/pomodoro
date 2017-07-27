@@ -4,9 +4,9 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --recursive --compilers js:babel-core/register ./test/.setup.spec.js ./test/**/*.spec.js",
     "bundle": "./node_modules/.bin/webpack --config webpack.config.js",
-    "bundle-analyze" : "./node_modules/.bin/webpack --config bundle-analyze-webpack.config.js"
+    "bundle-analyze": "./node_modules/.bin/webpack --config bundle-analyze-webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,12 +16,21 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.0",
+    "enzyme": "^2.9.1",
     "file-loader": "^0.11.2",
+    "jsdom": "^11.1.0",
+    "mocha": "^3.4.2",
+    "react-addons-test-utils": "^15.6.0",
+    "react-test-renderer": "^15.6.1",
+    "sinon-chrome": "^2.2.1",
     "webpack": "^3.0.0",
     "webpack-bundle-analyzer": "^2.8.2"
   },
   "dependencies": {
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
-  }
+    "react-dom": "^15.6.1",
+    "sinon": "^2.3.8"
+  },
+  "false": {}
 }

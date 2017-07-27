@@ -1,78 +1,41 @@
 import React, { Component } from 'react'
 
-const interval = 1000
-const limit = 15
-//TODO remove counter and only use state
-let counter = 0
-let recoder
+//issue with chrome 
+// fix with Date.now (maybe do to string)
+// chrome storage does not save dates objects well
+// https://bugs.chromium.org/p/chromium/issues/detail?id=161319
+
 
 export default class Timer extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {isRunning: false}
-    }
-
-    componentWillMount(){
-        chrome.storage.sync.get('isRunning', (isRunning)=>{
-            this.setState(isRunning)
-        })
-
-        chrome.storage.sync.get('startTime', (startTime)=>{
-            this.setState(startTime)
-        })
-    }
-
-    timer(){
-        if(this.state.startTime < limit && this.state.isRunning) {
-            counter = this.state.startTime
-            counter++
-            this.setState({ isRunning : true, startTime : counter })
-            chrome.storage.sync.set({isRunning: true, startTime :counter})
-        } 
+    
+    constructor(props){
+        super(props);
+            this.state = {startTime: Date.now()}
     }
 
     startTimer(){
-        recoder = setInterval(this.timer.bind(this), interval);
+        this.setState({startTime: Date.now()})
+        this.timer = setInterval(()=>{
+           this.tick()
+        }, 1)
     }
 
-    pauseTimer(){
-        clearInterval(recoder);
-        this.setState({ isRunning : false })
-        chrome.storage.sync.set({ isRunning: false })
+    stopTimer(){
+        clearInterval(this.timer)
     }
 
-    handleClick(){
-        if(this.state.isRunning){
-            counter = 0
-            this.pauseTimer()
-        } else {
-            this.setState({ isRunning : true, startTime :0 })
-            chrome.storage.sync.set({ isRunning: true, startTime : 0 })
-            this.startTimer()
+    tick(){
+        if(this.state.startTime){
+            this.setState({timeElapsed : Date.now() - this.state.startTime })
         }
     }
-
-    handlePause(){
-        if(this.state.isRunning){
-            this.pauseTimer()
-        } else if (this.state.startTime > 0){
-            clearInterval(recoder)
-            this.setState({ isRunning : true})
-            chrome.storage.sync.set({ isRunning: true})
-            this.startTimer()
-        }
-    }
+    
     render(){
-        const pauseVisbility = !this.state.isRunning ? 'grey': 'black'
-        const buttonText = this.state.isRunning ? 'Stop' : (!this.state.isRunning && (this.state.startTime > 0)) ? 'Restart' : 'Start'
-        return <div style={{height: '250px', width:'250px', display:"flex", justifyContent: "center", alignItems: "center"}}>
-                    <p> Time : {this.state.startTime}</p>
-                    <div onClick={this.handleClick.bind(this)} style={{backgroundColor:"black", height:"50px", width:"100px"}}>
-                        <h1 style={{color: 'white'}}>{buttonText}</h1>
-                    </div>
-                     <div onClick={this.handlePause.bind(this)} style={{backgroundColor:pauseVisbility, height:"30px", width:"50px"}}>
-                        <p style={{color: 'white'}}>Pause</p>
-                    </div>
+        return <div style={{height : '100px'}}>
+                    <span className="startTime">State Start Time{this.state.startTime}</span>
+                    <span className="elapsedTime">Elapsed Time {this.state.timeElapsed}</span>
+                    <button onClick={this.startTimer.bind(this)}> button</button>
+                    <button onClick={this.stopTimer.bind(this)}>Stop </button>
                 </div>
     }
 }
