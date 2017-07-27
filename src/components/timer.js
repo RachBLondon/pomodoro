@@ -17,7 +17,7 @@ export default class Timer extends Component{
         this.setState({startTime: Date.now()})
         this.timer = setInterval(()=>{
            this.tick()
-        }, 5000)
+        }, 1)
     }
 
     stopTimer(){
@@ -31,7 +31,6 @@ export default class Timer extends Component{
     }
     
     render(){
-        console.log("render this. state", this.state, "this ", this)
         return <div style={{height : '100px'}}>
                     <span className="startTime">State Start Time{this.state.startTime}</span>
                     <span className="elapsedTime">Elapsed Time {this.state.timeElapsed}</span>

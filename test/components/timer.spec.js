@@ -5,6 +5,7 @@ import chai, {expect} from 'chai'
 import Timer, { getTimeElapsed } from '../../src/components/timer'
 import { shallow } from 'enzyme'
 import mocha, {done } from 'mocha'
+//TODO get this working properly
 import chrome from 'sinon-chrome' //https://github.com/acvetkov/sinon-chrome
 import sinon from 'sinon'
 //TODO get sinon to simulate button clicks
@@ -17,20 +18,6 @@ describe('Timer', ()=>{
     it('exisists', ()=>{
         expect(Timer).to.exist
     })
-
-    // describe('loading state & storage', ()=>{
-    //     before(function () {
-    //         global.chrome = chrome
-    //     })
-    //     it('should have inital state of startTime = null', ()=>{
-    //         const wrapper = shallow(<Timer />)
-    //         expect(wrapper.state('startTime')).to.equal(null)
-    //     })
-
-    //     it('should not store a start time on inital load in chrome storage', ()=>{
-    //        expect(chrome.storage.startTime === null || chrome.storage.startTime === undefined ) 
-    //     })
-    // })
 })
 
 describe.only('Time functions', ()=>{
@@ -43,30 +30,14 @@ describe.only('Time functions', ()=>{
     wrapper.instance().startTimer()
 
     it('startTime save a time in state', ()=>{
+        console.log("1",wrapper.state('startTime'))
         expect(wrapper.state('startTime')).to.equal(date)
     })
     
     it('calculates the time elapsed since start time', ()=>{
-        expect(wrapper.state('timeSinceStartTime')).to.equal(Date.now()- date)
+        const perfectValue = Date.now()- date
+        expect(perfectValue - wrapper.state('timeElapsed')<= 2).to.be.true
     })
-
-
 })
 
-
-
-
-
-
-
-// describe('timeElapsed', ()=>{
-//     it('should work out time difference to a 10ms accuracey', (done)=>{
-//         const startTime = new Date()
-//         setTimeout(function(){
-//             const timeElapsed = getTimeElapsed(startTime)
-//             expect((timeElapsed - 1000) < 10).to.be.true
-//             done()
-//         }, 1000)
-//     })
-// })
 
