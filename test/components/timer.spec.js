@@ -53,9 +53,13 @@ describe('start and stop buttons', ()=>{
     const wrapper = shallow(<Timer />)
     wrapper.instance().startTimer()
 
-    it('should not display a statButton when the timer is running', ()=>{
-        console.log("this state", wrapper.state('isTimerRunning'))
+    it('should hide statButton when the timer is running', ()=>{
         expect(wrapper.find(".startBtn")).to.have.length(0)
+    })
+
+    it('should hide stopButton whne timer is not running ', ()=>{
+        wrapper.instance().stopTimer()
+        expect(wrapper.find(".stopBtn")).to.have.length(0)
     })
 })
 

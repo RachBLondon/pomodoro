@@ -21,6 +21,7 @@ export default class Timer extends Component{
     }
 
     stopTimer(){
+        this.setState({isTimerRunning : false})
         clearInterval(this.timer)
     }
 
@@ -34,8 +35,12 @@ export default class Timer extends Component{
         return <div style={{height : '100px'}}>
                     <span className="startTime">State Start Time{this.state.startTime}</span>
                     <span className="elapsedTime">Elapsed Time {this.state.timeElapsed}</span>
-                    {!this.state.isTimerRunning && <button className="startBtn" onClick={this.startTimer.bind(this)}> button</button>}
-                    <button className="stopBtn" onClick={this.stopTimer.bind(this)}>Stop </button>
+                    {!this.state.isTimerRunning && 
+                        <button className="startBtn" onClick={this.startTimer.bind(this)}> Start</button>
+                    }
+                    {this.state.isTimerRunning &&
+                        <button className="stopBtn" onClick={this.stopTimer.bind(this)}>Stop </button>                       
+                    }
                 </div>
     }
 }
