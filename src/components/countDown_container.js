@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import CountDown from './countDown.js'
 
-export function toSecs(ms){
-    return ms / 1000
-}
-
-export function toMins(ms){
-    return (ms / 1000) / 60
+export function inMinsAndSecs(ms){
+    const mins = Math.floor(ms / 60000)
+    const secs = (ms % 60000 / 1000).toFixed(0)/1
+    return {
+        mins : mins,
+        secs : secs
+    }
 }
 
 export default class CountDownContainer extends Component {
@@ -15,9 +16,6 @@ export default class CountDownContainer extends Component {
        return this.props.timeElapsed / 1000
     }
 
-    // getMinsElapsed(){
-
-    // }
 
     render(){
         console.log("countdown ", this.props.timeElapsed)

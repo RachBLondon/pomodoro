@@ -2,19 +2,22 @@ import React from 'react'
 import chai, {expect} from 'chai'
 import { shallow } from 'enzyme'
 import mocha, {done } from 'mocha'
-import { toSecs, toMins } from '../../src/components/countDown_container.js'
+import { toSecs, toMins, inMinsAndSecs } from '../../src/components/countDown_container.js'
 
 
 
-describe('toSecs', ()=>{
-    it('turns ms to seconds', ()=>{
-        expect(toSecs(1000)).to.equal(1)
+describe('inMinsAndSecs', ()=>{
+    it('coverts 1sec correctly', ()=>{
+        expect(inMinsAndSecs(1000)).to.deep.equal({mins: 0, secs:1})
     })
-})
 
-describe('toMins', ()=>{
-    it('turns ms to minutes', ()=>{
-        expect(toMins(300000)).to.equal(5)
+    it('converts 1 min correctly', ()=>{
+        expect(inMinsAndSecs(60000)).to.deep.equal({mins: 1, secs: 0})
     })
+
+    it('converts 4 mins 25 seconds correctly', ()=>{
+        expect(inMinsAndSecs(265000)).to.deep.equal({mins: 4, secs:25})
+    })
+
 })
 
