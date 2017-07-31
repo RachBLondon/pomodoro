@@ -10,8 +10,34 @@ export function inMinsAndSecs(ms){
         secs : secs
     }
 }
-
 export default class CountDownContainer extends Component {
+    // componentWillMount(){
+    //     console.log("in component will mount", this.props)
+    //     this.setState({'timers': inMinsAndSecs(FOCUS_TIME - this.props.timeElapsed) }, function(){
+    //         console.log("state ", this.state)
+    //     })
+    //     chrome.storage.sync.get('tesr', function(storage){
+    //         console.log("got storage", storage)
+    //     })
+    // }
+
+    componentWillReceiveProps(){
+        console.log("in component will recieve props", this.props)
+        this.setState({'timers': inMinsAndSecs(FOCUS_TIME - this.props.timeElapsed) }, function(){
+            console.log("state ", this.state)
+        })
+        chrome.storage.sync.get('tesr', function(storage){
+            console.log("got storage", storage)
+        })
+    }
+
+    //TODO this is not getting trigger
+    componentWillUnmount(){
+        console.log("in component will UN UN mount")
+        chrome.storage.sync.set({tesr : "hello3"}, function(storage){
+            console.log("got storage", storage)
+        })
+    }
 
     getSecsElapsed(){
        return this.props.timeElapsed / 1000

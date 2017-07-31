@@ -1,9 +1,10 @@
 import React from 'react'
 import chai, {expect} from 'chai'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import mocha, {done } from 'mocha'
 import { toSecs, toMins, inMinsAndSecs } from '../../src/components/countDown_container.js'
 import { FOCUS_TIME } from '../../utils'
+import CountDownContainer from '../../src/components/countDown_container'
 
 
 
@@ -34,6 +35,16 @@ describe('timeleft', ()=>{
     it('converts 10 mins 3 seconds work accurately',()=>{
         const tenMins3secsWorkCompleted = FOCUS_TIME - 603000
         expect(inMinsAndSecs(tenMins3secsWorkCompleted)).to.deep.equal({mins:14, secs: 57})
+    })
+})
+
+describe('<CountDownContainer />', function(){
+    const wrapper = shallow(<CountDownContainer timeElapsed={1000}/>)
+    it('renders countdown', ()=>{
+        expect(wrapper.find('CountDown')).to.have.length(1)
+    })
+    it('renders correct timers with prop of 1000ms', ()=>{
+        expect(wrapper.props().timers).to.be.deep.equal({ mins: 24, secs: 59 })
     })
 })
 
