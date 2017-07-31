@@ -7,10 +7,10 @@ export default class CountDown extends Component {
                     <h2> Time left </h2>
                     <div className="row">
                         <div className="col">
-                            <p>{this.props.minsToGo} Mins</p>
+                            <p>{this.props.timers.mins} Mins</p>
                         </div>
                         <div className="col">
-                            <p>{this.props.secsToGo} Seconds</p>
+                            <p>{this.props.timers.secs} Seconds</p>
                         </div>
                     </div>
                 </div>

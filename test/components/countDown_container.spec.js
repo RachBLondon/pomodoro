@@ -3,6 +3,7 @@ import chai, {expect} from 'chai'
 import { shallow } from 'enzyme'
 import mocha, {done } from 'mocha'
 import { toSecs, toMins, inMinsAndSecs } from '../../src/components/countDown_container.js'
+import { FOCUS_TIME } from '../../utils'
 
 
 
@@ -19,5 +20,22 @@ describe('inMinsAndSecs', ()=>{
         expect(inMinsAndSecs(265000)).to.deep.equal({mins: 4, secs:25})
     })
 
+    it('converts 25mins accurately', ()=>{
+        expect(inMinsAndSecs(1500000)).to.deep.equal({mins:25, secs: 0})
+    })
 })
+
+describe('timeleft', ()=>{
+    it('converts 1 min work completed accurately', ()=>{
+        const oneMinWorkCompleted = FOCUS_TIME - 60000
+        expect(inMinsAndSecs(oneMinWorkCompleted)).to.deep.equal({mins:24, secs: 0})
+    })
+
+    it('converts 10 mins 3 seconds work accurately',()=>{
+        const tenMins3secsWorkCompleted = FOCUS_TIME - 603000
+        expect(inMinsAndSecs(tenMins3secsWorkCompleted)).to.deep.equal({mins:14, secs: 57})
+    })
+})
+
+
 

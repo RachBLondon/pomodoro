@@ -34,9 +34,7 @@ export default class Timer extends Component{
     
     render(){
         return <div style={{height : '100px'}}>
-                    <span className="startTime">State Start Time{this.state.startTime}</span>
-                    <span className="timeElapsed">Elapsed Time {this.state.timeElapsed}</span>
-                    
+  
                     { this.state.isTimerRunning &&
                            <CountDownContainer 
                                 timeElapsed={this.state.timeElapsed}/>

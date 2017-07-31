@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CountDown from './countDown.js'
+import { FOCUS_TIME } from './../../utils.js'
 
 export function inMinsAndSecs(ms){
     const mins = Math.floor(ms / 60000)
@@ -18,10 +19,9 @@ export default class CountDownContainer extends Component {
 
 
     render(){
-        console.log("countdown ", this.props.timeElapsed)
+        const timeleft = inMinsAndSecs(FOCUS_TIME - this.props.timeElapsed)
         return <CountDown
-                    secsToGo={this.getSecsElapsed()}
-                    minsToGo={15}
+                  timers={timeleft}
         />
     }
 }

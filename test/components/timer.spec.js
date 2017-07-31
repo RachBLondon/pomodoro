@@ -8,7 +8,7 @@ import chrome from 'sinon-chrome' //https://github.com/acvetkov/sinon-chrome
 import sinon from 'sinon'
 //TODO get sinon to simulate button clicks
 
-import { TIME_TOLERANCE } from './../utils.js'
+import { TIME_TOLERANCE } from './../../utils.js'
 
 describe('Timer', ()=>{
     before(function () {
