@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CountDownContainer from './countDown_container.js'
 
 //issue with chrome 
 // fix with Date.now (maybe do to string)
@@ -33,8 +34,11 @@ export default class Timer extends Component{
     
     render(){
         return <div style={{height : '100px'}}>
-                    <span className="startTime">State Start Time{this.state.startTime}</span>
-                    <span className="elapsedTime">Elapsed Time {this.state.timeElapsed}</span>
+  
+                    { this.state.isTimerRunning &&
+                           <CountDownContainer 
+                                timeElapsed={this.state.timeElapsed}/>
+                    }
                     {!this.state.isTimerRunning && 
                         <button className="startBtn" onClick={this.startTimer.bind(this)}> Start</button>
                     }
