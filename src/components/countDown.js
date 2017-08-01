@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 
 export default class CountDown extends Component {
+    componentWillUnmount(){
+        console.log("in component will unmount")
+        // if(this.state.isTimerRunning){
+            chrome.extension.sendMessage({greeting: "startTimer"})
+        // }
+    }
 
     render(){
         return <div className="count-down">

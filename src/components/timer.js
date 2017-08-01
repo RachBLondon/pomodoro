@@ -29,12 +29,14 @@ export default class Timer extends Component{
     
     // if js time string is in storage pull it our
     componentWillMount(){
-        chrome.extension.sendMessage({greeting: "startTimer"})
     }
 
     // if time string is in state save in storage
-    componentWillUnMount(){
-
+    componentWillUnmount(){
+        console.log("in component will unmount")
+        // if(this.state.isTimerRunning){
+            chrome.extension.sendMessage({greeting: "startTimer"})
+        // }
     }
 
     startTimer(){
