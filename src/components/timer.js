@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CountDown from './countDown.js'
 import { FOCUS_TIME } from './../../utils.js'
+import chrome from 'sinon-chrome'
 
 //issue with chrome 
 // fix with Date.now (maybe do to string)
