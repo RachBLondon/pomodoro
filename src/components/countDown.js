@@ -9,6 +9,11 @@ export default class CountDown extends Component {
     //     // }
     // }
 
+
+    componentWillUnmount(){
+        chrome.runtime.sendMessage("closing timers")
+    }
+
     render(){
         return <div className="count-down">
                     <h2> Time left </h2>

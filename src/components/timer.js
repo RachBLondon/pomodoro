@@ -20,6 +20,17 @@ export function inMinsAndSecs(ms){
     }
 }
 
+// window.onbeforeunload = function(){
+//     console.log("unloadings")
+//     chrome.extension.sendMessage({greeting: "startTimer"})
+
+// }
+// window.onunload=function(){
+//     console.log("before debugger")
+//     debugger;
+// }
+
+
 export default class Timer extends Component{
     
     constructor(props){
@@ -29,15 +40,9 @@ export default class Timer extends Component{
     
     // if js time string is in storage pull it our
     componentWillMount(){
+        chrome.runtime.sendMessage("first message")
     }
 
-    // if time string is in state save in storage
-    componentWillUnmount(){
-        console.log("in component will unmount")
-        // if(this.state.isTimerRunning){
-            chrome.extension.sendMessage({greeting: "startTimer"})
-        // }
-    }
 
     startTimer(){
         this.setState({startTime: Date.now(), isTimerRunning : true})
@@ -57,12 +62,13 @@ export default class Timer extends Component{
         }
     }
 
-    //TODO find away to handle bug where if the conter is always visable a user can 
-    //click the start  button multiple times to start in double + speed
-    // maybe remove the option to start once you have untill the intervals have been cleared
-    // also need to find a way to pause timer.
+    
+
+   
+
     
     render(){
+
         const timers = inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed)
         return <div style={{height : '100px'}}>
 
