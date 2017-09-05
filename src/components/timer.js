@@ -20,17 +20,6 @@ export function inMinsAndSecs(ms){
     }
 }
 
-// window.onbeforeunload = function(){
-//     console.log("unloadings")
-//     chrome.extension.sendMessage({greeting: "startTimer"})
-
-// }
-// window.onunload=function(){
-//     console.log("before debugger")
-//     debugger;
-// }
-
-
 export default class Timer extends Component{
     
     constructor(props){
@@ -38,7 +27,7 @@ export default class Timer extends Component{
             this.state = {startTime: Date.now(), isTimerRunning: false}
     }
     
-    // if js time string is in storage pull it our
+
     componentWillMount(){
         chrome.runtime.sendMessage("first message")
     }
@@ -61,10 +50,6 @@ export default class Timer extends Component{
             this.setState({timeElapsed : Date.now() - this.state.startTime })
         }
     }
-
-    
-
-   
 
     
     render(){
