@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import CountDown from './countDown.js'
 import { FOCUS_TIME } from './../../utils.js'
-import chrome from 'sinon-chrome'
+//TODO only us sinon-chrome in test env
+// import chrome from 'sinon-chrome'
 
 //issue with chrome 
 // fix with Date.now (maybe do to string)
@@ -27,7 +28,6 @@ export default class Timer extends Component{
     
 
     componentWillMount(){
-        chrome.runtime.sendMessage("component mounted")
     }
 
 
@@ -36,17 +36,17 @@ export default class Timer extends Component{
 
     }
 
+    stopTimer(){
+        chrome.runtime.sendMessage("stopTimer")
+    }
+
 
 
     
     render(){
-                chrome.runtime.sendMessage("component rendered")
-        chrome.runtime.sendMessage("closing timers")
-
-   
         return <div style={{height : '100px'}}>
                         <button className="startBtn" onClick={this.startTimer}> Start</button>             
-                        <button className="stopBtn">Stop </button>                                       
+                        <button className="stopBtn" onClick={this.stopTimer}>Stop </button>                                       
                 </div>
     }
 }
