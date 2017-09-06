@@ -7,7 +7,7 @@ function startTimer(){
   state.isTimerRUnning = true
   timer = setInterval(()=>{
      tick()
-  }, 1000)
+  }, 1)
     console.log("state :", state)
 }
 
@@ -20,7 +20,7 @@ function tick(){
 
 function stopTimer(){
   console.log("stop timer")
-  state.isTimerRUnning = false
+  state = {}
   clearInterval(timer)
 }
 
