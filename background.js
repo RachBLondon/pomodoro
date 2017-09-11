@@ -7,25 +7,23 @@ function startTimer(){
   state.isTimerRUnning = true
   timer = setInterval(()=>{
      tick()
-  }, 1)
+  }, 1000)
     console.log("state :", state)
 }
 
 function tick(){
     console.log("tick state ", state)
     if(state.startTime){
-        state.timeElapsed = Date.now() - this.state.startTime 
+        state.timeElapsed = Date.now() - state.startTime 
     }
 }
 
 function stopTimer(){
-  console.log("stop timer")
   state = {}
   clearInterval(timer)
 }
 
 function handleMessage(request, sender, sendResponse) {
-  console.log("Message from the content script: " + request);
 
     if(request === 'startTimer'){
       startTimer()
@@ -35,7 +33,9 @@ function handleMessage(request, sender, sendResponse) {
       stopTimer()
     }
 
-  sendResponse({response: "Response from background script"});
+    if(request === 'getTime'){
+      sendResponse({timeElapsed : state.timeElapsed})
+    }
 }
 
 chrome.runtime.onMessage.addListener(handleMessage);

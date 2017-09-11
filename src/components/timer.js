@@ -28,6 +28,11 @@ export default class Timer extends Component{
     
 
     componentWillMount(){
+        chrome.runtime.sendMessage("getTime", (timeElapsed)=>{
+            console.log("hats ", timeElapsed.timeElapsed)
+            this.setState({timeElapsed: timeElapsed.timeElapsed})
+
+        })
     }
 
 
@@ -44,6 +49,7 @@ export default class Timer extends Component{
 
     
     render(){
+        // const timeElapsed = this.state.timeElapsed || 0
         return <div style={{height : '100px'}}>
                         <button className="startBtn" onClick={this.startTimer}> Start</button>             
                         <button className="stopBtn" onClick={this.stopTimer}>Stop </button>                                       
