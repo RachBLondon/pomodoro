@@ -58,9 +58,7 @@ function handleMessage(request, sender, sendResponse) {
   }
 
   if (request === 'getTime') {
-    sendResponse({
-      timeElapsed: state.timeElapsed
-    })
+    sendResponse(timerObj)
   }
 }
 
