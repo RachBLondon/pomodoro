@@ -29,12 +29,13 @@ export default class Timer extends Component {
   }
 
   componentWillMount() {
-    chrome.runtime.sendMessage("getTime", timerObj => {
-      this.setState({ timeElapsed: timerObj.timeElapsed }, () => {
-        console.log(timerObj)
-        timerObj.startTimer()
-        console.log("after change ", this.state);
-      });
+    chrome.runtime.sendMessage("getTime", state => {
+      console.log("component will mount state", state)
+      // this.setState({ timeElapsed: timerObj.timeElapsed }, () => {
+      //   console.log(timerObj)
+      //   timerObj.startTimer()
+      //   console.log("after change ", this.state);
+      // });
     });
   }
 
