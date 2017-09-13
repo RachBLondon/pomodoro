@@ -1,7 +1,7 @@
 var gulp = require('gulp')
 
 gulp.task('move', ()=>{
-    gulp.src(['./background.js', './content_script.js'])
+    gulp.src(['./content_script.js'])
     .pipe(gulp.dest('./dist'))
 })
 

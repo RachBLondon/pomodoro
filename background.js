@@ -1,5 +1,6 @@
 var state = {}
 var timer
+import { startTimer } from "./utils"
 
 // var timerObj = {
 //   startTimer: function () {
@@ -26,14 +27,14 @@ var timer
 //   }
 // }
 
-function startTimer() {
-  state.startTime = Date.now()
-  state.isTimerRUnning = true
-  timer = setInterval(() => {
-    tick()
-  }, 1000)
-  console.log("state :", state)
-}
+// function startTimer() {
+//   state.startTime = Date.now()
+//   state.isTimerRUnning = true
+//   timer = setInterval(() => {
+//     tick()
+//   }, 1000)
+//   console.log("state :", state)
+// }
 
 function tick() {
   console.log("tick state ", state)
@@ -50,7 +51,8 @@ function stopTimer() {
 function handleMessage(request, sender, sendResponse) {
 
   if (request === 'startTimer') {
-    startTimer()
+    console.log("in start timer")
+    startTimer(state, timer, tick)
   }
 
   if (request === 'stopTimer') {
