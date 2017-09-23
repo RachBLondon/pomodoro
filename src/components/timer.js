@@ -31,11 +31,16 @@ export default class Timer extends Component {
   componentWillMount() {
     chrome.runtime.sendMessage("getTime", state => {
       console.log("component will mount state", state)
-      // this.setState({ timeElapsed: timerObj.timeElapsed }, () => {
-      //   console.log(timerObj)
-      //   timerObj.startTimer()
-      //   console.log("after change ", this.state);
-      // });
+      console.log("isRunning ", state.isTimerRunning)
+
+      //TODO if running
+      if(state.isTimerRunning){
+        console.log("is running yays")
+      }
+
+    
+
+      //TODO if not running
     });
   }
 

@@ -1,12 +1,11 @@
 var path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./background.js",
   output: {
-    filename: "bundle.js",
+    filename: "background.js",
     path: path.resolve(__dirname, "dist")
   },
-  devtool: "inline-source-maps",
   module: {
     rules: [
       {
