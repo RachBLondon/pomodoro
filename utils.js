@@ -18,7 +18,7 @@ export function startTimer(tick) {
 }
 
 export function tick() {
-  console.log("tick state ");
+  console.log("tick state ", state);
   if (state.startTime) {
     state.timeElapsed = Date.now() - state.startTime;
   }
@@ -29,4 +29,8 @@ export function stopTimer() {
   state = {};
   
   clearInterval(timer);
+}
+
+export function getTime(){
+    return state
 }

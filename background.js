@@ -1,4 +1,4 @@
-import { startTimer, tick, stopTimer } from "./utils"
+import { startTimer, tick, stopTimer, getTime } from "./utils"
 
 
 function handleMessage(request, sender, sendResponse) {
@@ -13,7 +13,8 @@ function handleMessage(request, sender, sendResponse) {
   }
 
   if (request === 'getTime') {
-    // sendResponse()
+    console.log(getTime())
+    sendResponse(getTime())
   }
 }
 
