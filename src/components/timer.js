@@ -74,28 +74,11 @@ export default class Timer extends Component {
       <div style={{ height: "200px", margin: "30px" }}>
         <h1> Get s**t done </h1>
 
-        {this.state.isTimerRunning && (
-          <div className="timer">
-            <div className="block mins" style={{backgroundColor: this.getBackgroundColor(FOCUS_TIME) }}>
-              {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).mins}
-            </div>
-            <div className="block secs" style={{backgroundColor: this.getBackgroundColor(FOCUS_TIME)}}>
-              {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).secs}
-            </div>
-          </div>
-        )}
-
-        {!this.state.isTimerRunning && (
-          <div className="timer">
-            <div className="block mins" style={{backgroundColor: 'grey' }}>
-              {inMinsAndSecs(FOCUS_TIME).mins}
-            </div>
-            <div className="block secs" style={{backgroundColor: 'grey' }}>
-              {inMinsAndSecs(FOCUS_TIME).secs}
-            </div>
-          </div>
-        )}
-
+          <CountDown  backgroundColor={this.state.isTimerRunning ? this.getBackgroundColor(FOCUS_TIME): 'grey'}
+                      mins={inMinsAndSecs(FOCUS_TIME - (this.state.timeElapsed || 0)).mins}
+                      secs={inMinsAndSecs(FOCUS_TIME - (this.state.timeElapsed || 0)).secs}
+                      />
+                      
         {!this.state.isTimerRunning && (
           <button className="startBtn" onClick={this.startTimer.bind(this)}>
             Start

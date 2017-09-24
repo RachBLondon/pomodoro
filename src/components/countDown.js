@@ -1,22 +1,16 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 
 export default class CountDown extends Component {
-
-    componentWillUnmount(){
-        chrome.runtime.sendMessage("closing timers")
-    }
-
-    render(){
-        return <div className="count-down">
-                    <h2> Time left </h2>
-                    <div className="row">
-                        <div className="col">
-                            <p className="mins">{this.props.timers.mins} Mins</p>
-                        </div>
-                        <div className="col">
-                            <p className="secs">{this.props.timers.secs} Seconds</p>
-                        </div>
-                    </div>
-                </div>
-    }
+  render() {
+    return (
+      <div className="timer">
+        <div className="block mins" style={{ backgroundColor: this.props.backgroundColor }}>
+          {this.props.mins}
+        </div>
+        <div className="block secs" style={{ backgroundColor: this.props.backgroundColor}}>
+          {this.props.secs}
+        </div>
+      </div>
+    );
+  }
 }
