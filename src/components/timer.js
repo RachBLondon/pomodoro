@@ -86,6 +86,17 @@ export default class Timer extends Component {
         )}
 
         {!this.state.isTimerRunning && (
+          <div className="timer">
+            <div className="block mins" style={{backgroundColor: 'grey' }}>
+              {inMinsAndSecs(FOCUS_TIME).mins}
+            </div>
+            <div className="block secs" style={{backgroundColor: 'grey' }}>
+              {inMinsAndSecs(FOCUS_TIME).secs}
+            </div>
+          </div>
+        )}
+
+        {!this.state.isTimerRunning && (
           <button className="startBtn" onClick={this.startTimer.bind(this)}>
             Start
           </button>
