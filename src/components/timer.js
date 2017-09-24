@@ -21,7 +21,12 @@ export default class Timer extends Component {
   ticker() {
     setInterval(() => {
       chrome.runtime.sendMessage("getTime", state => {
-        this.setState({ timeElapsed: state.timeElapsed });
+        console.log('ticker', state)
+        this.setState({ timeElapsed: state.timeElapsed, isTimerRunning : state.isTimerRunning });
+        if(state.timeElapsed >= FOCUS_TIME){
+          console.log("time done", this)
+          this.stopTimer()
+        }
       });
     }, 1000);
   }
@@ -45,6 +50,7 @@ export default class Timer extends Component {
   stopTimer() {
     chrome.runtime.sendMessage("stopTimer", response => {
       this.setState({ isTimerRunning: false });
+      console.log("stop timer state", this.state)
     });
   }
 

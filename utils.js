@@ -1,5 +1,6 @@
 //src contstants
-export const FOCUS_TIME = 1500000; // 25 mins
+// export const FOCUS_TIME = 1500000; // 25 mins
+export const FOCUS_TIME = 2000
 
 //Testing constants
 export const TIME_TOLERANCE = 2;
@@ -13,7 +14,6 @@ export function startTimer(tick) {
   timer = setInterval(() => {
     tick();
   }, 1000);
-  console.log("start timer utils ", state);
 }
 
 export function tick() {
