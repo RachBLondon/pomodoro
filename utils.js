@@ -1,6 +1,6 @@
 //src contstants
 // export const FOCUS_TIME = 1500000; // 25 mins
-export const FOCUS_TIME = 2000
+export const FOCUS_TIME = 10000
 
 //Testing constants
 export const TIME_TOLERANCE = 2;

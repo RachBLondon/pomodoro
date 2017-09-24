@@ -43,7 +43,7 @@ export default class Timer extends Component {
 
   startTimer() {
     chrome.runtime.sendMessage("startTimer", response => {
-      this.setState({ isTimerRunning: true });
+      this.setState({ isTimerRunning: true, timeElapsed : 0 });
       this.ticker();
     });
   }
@@ -54,6 +54,17 @@ export default class Timer extends Component {
     });
   }
 
+  getBackgroundColor(FOCUS_TIME){
+    const countDownTime = FOCUS_TIME - this.state.timeElapsed
+    if ((countDownTime > (FOCUS_TIME * 0.1)) && (countDownTime < (FOCUS_TIME * 0.3))){
+      return 'orange'
+    }
+    if(countDownTime > (FOCUS_TIME * 0.1)){
+      return 'blue'
+    }
+    return 'red'
+  }
+
   render() {
     return (
       <div style={{ height: "200px", margin: "30px" }}>
@@ -61,10 +72,10 @@ export default class Timer extends Component {
 
         {this.state.isTimerRunning && (
           <div className="timer">
-            <div className="block mins">
+            <div className="block mins" style={{backgroundColor: this.getBackgroundColor(FOCUS_TIME) }}>
               {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).mins}
             </div>
-            <div className="block secs">
+            <div className="block secs" style={{backgroundColor: this.getBackgroundColor(FOCUS_TIME)}}>
               {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).secs}
             </div>
           </div>
