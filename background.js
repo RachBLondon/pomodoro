@@ -1,9 +1,23 @@
-console.log("hello from background file")
+import { startTimer, tick, stopTimer, getTime } from "./utils"
+
 
 function handleMessage(request, sender, sendResponse) {
-  console.log("Message from the content script: " +
-    request);
-  sendResponse({response: "Response from background script"});
+
+  if (request === 'startTimer') {
+    console.log("in start timer")
+    startTimer( tick)
+    sendResponse('done')
+  }
+
+  if (request === 'stopTimer') {
+    stopTimer()
+    sendResponse('done')
+  }
+
+  if (request === 'getTime') {
+    console.log(getTime())
+    sendResponse(getTime())
+  }
 }
 
 chrome.runtime.onMessage.addListener(handleMessage);
