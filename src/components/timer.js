@@ -21,11 +21,12 @@ export default class Timer extends Component {
   ticker() {
     setInterval(() => {
       chrome.runtime.sendMessage("getTime", state => {
-        console.log('ticker', state)
-        this.setState({ timeElapsed: state.timeElapsed, isTimerRunning : state.isTimerRunning });
-        if(state.timeElapsed >= FOCUS_TIME){
-          console.log("time done", this)
-          this.stopTimer()
+        this.setState({
+          timeElapsed: state.timeElapsed,
+          isTimerRunning: state.isTimerRunning
+        });
+        if (state.timeElapsed >= FOCUS_TIME) {
+          this.stopTimer();
         }
       });
     }, 1000);
@@ -50,7 +51,6 @@ export default class Timer extends Component {
   stopTimer() {
     chrome.runtime.sendMessage("stopTimer", response => {
       this.setState({ isTimerRunning: false });
-      console.log("stop timer state", this.state)
     });
   }
 
@@ -59,15 +59,17 @@ export default class Timer extends Component {
       <div style={{ height: "200px", margin: "30px" }}>
         <h1> Get s**t done </h1>
 
-        {this.state.isTimerRunning &&
+        {this.state.isTimerRunning && (
           <div className="timer">
             <div className="block mins">
               {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).mins}
             </div>
             <div className="block secs">
-            {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).secs}
+              {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).secs}
             </div>
-          </div>}
+          </div>
+        )}
+
         {!this.state.isTimerRunning && (
           <button className="startBtn" onClick={this.startTimer.bind(this)}>
             Start
@@ -79,6 +81,7 @@ export default class Timer extends Component {
             Stop
           </button>
         )}
+
       </div>
     );
   }
