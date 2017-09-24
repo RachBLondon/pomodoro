@@ -10,6 +10,7 @@ function handleMessage(request, sender, sendResponse) {
 
   if (request === 'stopTimer') {
     stopTimer()
+    sendResponse('done')
   }
 
   if (request === 'getTime') {
