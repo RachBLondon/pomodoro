@@ -4,9 +4,8 @@ export const FOCUS_TIME = 1500000; // 25 mins
 //Testing constants
 export const TIME_TOLERANCE = 2;
 
-
-var timer
-var state = {}
+var timer;
+var state = {};
 //timer functions
 export function startTimer(tick) {
   state.startTime = Date.now();
@@ -25,21 +24,20 @@ export function tick() {
 }
 
 export function stopTimer() {
-  console.log("in stop timers")  
+  console.log("in stop timers");
   state = {};
-  
   clearInterval(timer);
 }
 
-export function getTime(){
-    return state
+export function getTime() {
+  return state;
 }
 
-export function inMinsAndSecs(ms){
-  const mins = Math.floor(ms / 60000)
-  const secs = (ms % 60000 / 1000).toFixed(0)/1
+export function inMinsAndSecs(ms) {
+  const mins = Math.floor(ms / 60000);
+  const secs = ((ms % 60000) / 1000).toFixed(0) / 1;
   return {
-      mins : mins,
-      secs : secs
-  }
+    mins: mins,
+    secs: secs
+  };
 }

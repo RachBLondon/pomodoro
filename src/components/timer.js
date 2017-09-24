@@ -18,46 +18,55 @@ export default class Timer extends Component {
     this.state = { timeElapsed: 0, isTimerRunning: false };
   }
 
+  ticker() {
+    setInterval(() => {
+      chrome.runtime.sendMessage("getTime", state => {
+        this.setState({ timeElapsed: state.timeElapsed });
+      });
+    }, 1000);
+  }
+
   componentWillMount() {
     chrome.runtime.sendMessage("getTime", state => {
       if (state.isTimerRunning) {
         this.setState({ isTimerRunning: true, timeElapsed: state.timeElapsed });
-        setInterval(() => {
-          chrome.runtime.sendMessage("getTime", state => {
-            this.setState({ timeElapsed: state.timeElapsed });
-          });
-        }, 1000);
+        this.ticker();
       }
     });
   }
 
   startTimer() {
-    chrome.runtime.sendMessage("startTimer");
+    chrome.runtime.sendMessage("startTimer", response => {
+      this.setState({ isTimerRunning: true });
+      this.ticker();
+    });
   }
 
   stopTimer() {
     chrome.runtime.sendMessage("stopTimer", response => {
-      console.log("stop timer ", response)
-      this.setState({isTimerRunning : false}
-    )});
+      this.setState({ isTimerRunning: false });
+    });
   }
 
   render() {
-
     return (
       <div style={{ height: "100px" }}>
         <h1> Get s**t done </h1>
-        
-        {this.state.isTimerRunning && `Mins ${inMinsAndSecs( this.state.timeElapsed).mins} Secs: ${inMinsAndSecs( this.state.timeElapsed).secs}`}
-        {!this.state.isTimerRunning && 
-            <button className="startBtn" onClick={this.startTimer.bind(this)}>
+
+        {this.state.isTimerRunning &&
+          `Mins ${inMinsAndSecs(this.state.timeElapsed)
+            .mins} Secs: ${inMinsAndSecs(this.state.timeElapsed).secs}`}
+        {!this.state.isTimerRunning && (
+          <button className="startBtn" onClick={this.startTimer.bind(this)}>
             Start
-          </button>}
-         
-        { this.state.isTimerRunning &&
+          </button>
+        )}
+
+        {this.state.isTimerRunning && (
           <button className="stopBtn" onClick={this.stopTimer.bind(this)}>
             Stop
-          </button> }
+          </button>
+        )}
       </div>
     );
   }

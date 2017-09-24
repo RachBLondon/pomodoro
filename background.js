@@ -6,6 +6,7 @@ function handleMessage(request, sender, sendResponse) {
   if (request === 'startTimer') {
     console.log("in start timer")
     startTimer( tick)
+    sendResponse('done')
   }
 
   if (request === 'stopTimer') {
