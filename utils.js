@@ -34,13 +34,3 @@ export function stopTimer() {
 export function getTime(){
     return state
 }
-
-
-export function inMinsAndSecs(ms) {
-  const mins = Math.floor(ms / 60000);
-  const secs = ((ms % 60000) / 1000).toFixed(0) / 1;
-  return {
-    mins: mins,
-    secs: secs
-  };
-}
