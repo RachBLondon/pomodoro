@@ -35,6 +35,10 @@ export default class Timer extends Component {
   componentWillMount() {
     chrome.runtime.sendMessage("getTime", state => {
       if (state.isTimerRunning) {
+        if(state.timeElapsed > FOCUS_TIME){
+          //TODO handle done case here
+          return
+        }
         this.setState({ isTimerRunning: true, timeElapsed: state.timeElapsed });
         this.ticker();
       }
