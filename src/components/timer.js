@@ -50,12 +50,18 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <div style={{ height: "100px" }}>
+      <div style={{ height: "200px", margin: "30px" }}>
         <h1> Get s**t done </h1>
 
         {this.state.isTimerRunning &&
-          `Mins ${inMinsAndSecs(this.state.timeElapsed)
-            .mins} Secs: ${inMinsAndSecs(this.state.timeElapsed).secs}`}
+          <div className="timer">
+            <div className="block mins">
+              {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).mins}
+            </div>
+            <div className="block secs">
+            {inMinsAndSecs(FOCUS_TIME - this.state.timeElapsed).secs}
+            </div>
+          </div>}
         {!this.state.isTimerRunning && (
           <button className="startBtn" onClick={this.startTimer.bind(this)}>
             Start
