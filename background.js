@@ -1,10 +1,31 @@
 import { startTimer, tick, stopTimer, getTime } from "./utils"
 
 
+// chrome.app.runtime.onLaunched.addListener(function() {
+//   // chrome.app.window.create('calculator.html', {
+//   //   id: "calcWinID",
+//   //   innerBounds: {
+//   //     width: 244,
+//   //     height: 380,
+//   //     minWidth: 244,
+//   //     minHeight: 380
+//   //   }
+//   // });
+//   console.log("hello")
+// });
+
+const options = {
+  type : "basic",
+  title : "hello notification",
+  message : "sadkjfhdskalfhklsdaf ",
+  iconUrl : "./assets/icon48.png"
+}
+
 function handleMessage(request, sender, sendResponse) {
 
   if (request === 'startTimer') {
-    console.log("in start timer")
+    console.log("chrome :", chrome)
+    chrome.notifications.create(options, callback )
     startTimer( tick)
     sendResponse('done')
   }
@@ -18,6 +39,10 @@ function handleMessage(request, sender, sendResponse) {
     console.log(getTime())
     sendResponse(getTime())
   }
+}
+
+function callback (){
+  console.log("cb done")
 }
 
 chrome.runtime.onMessage.addListener(handleMessage);

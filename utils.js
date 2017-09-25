@@ -17,14 +17,12 @@ export function startTimer(tick) {
 }
 
 export function tick() {
-  console.log("tick state ", state);
   if (state.startTime) {
     state.timeElapsed = Date.now() - state.startTime;
   }
 }
 
 export function stopTimer() {
-  console.log("in stop timers");
   state = {};
   clearInterval(timer);
 }

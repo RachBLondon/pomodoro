@@ -70,6 +70,7 @@ export default class Timer extends Component {
   }
 
   render() {
+    console.log("chrome :",chrome)
     return (
       <div style={{ height: "200px", margin: "30px" }}>
         <h1> Get s**t done </h1>
