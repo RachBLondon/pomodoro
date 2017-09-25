@@ -8,7 +8,9 @@ const options = {
 };
 
 function timesUp() {
+  stopTimer()
   chrome.notifications.create(options, function() {
+    //TODO initate message to popup to say its done
   });
 }
 
